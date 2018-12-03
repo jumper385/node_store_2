@@ -6,6 +6,10 @@ const app = express()
 const db = 'mongodb://localhost:27017/store'
 
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended:true}))
+
+const productRoute = require('./routes/productRoute')
+app.use('/products', productRoute)
 
 mongoose
     .connect(db, { useNewUrlParser: true })
